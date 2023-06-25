@@ -1,20 +1,16 @@
 package pl.jarekwasowski.openaikt
 
-import pl.jarekwasowski.openaikt.model.Choice
-import pl.jarekwasowski.openaikt.model.CreateChatCompletionRequest
-import pl.jarekwasowski.openaikt.model.CreateChatCompletionResponse
+import pl.jarekwasowski.openaikt.model.ChatCompletionRequest
+import pl.jarekwasowski.openaikt.model.ChatMessage
 import pl.jarekwasowski.openaikt.model.Function
 import pl.jarekwasowski.openaikt.model.FunctionCall
 import pl.jarekwasowski.openaikt.model.FunctionParameterProperties
 import pl.jarekwasowski.openaikt.model.FunctionParameters
-import pl.jarekwasowski.openaikt.model.Message
 import pl.jarekwasowski.openaikt.model.MessageFunctionCall
 import pl.jarekwasowski.openaikt.model.MessageRole
 import pl.jarekwasowski.openaikt.model.MessageRole.ASSISTANT
 import pl.jarekwasowski.openaikt.model.MessageRole.SYSTEM
 import pl.jarekwasowski.openaikt.model.MessageRole.USER
-import pl.jarekwasowski.openaikt.model.Usage
-import kotlin.random.Random
 
 class ChatFixture {
 
@@ -25,9 +21,6 @@ class ChatFixture {
         const val DESCRIPTION = "A test function"
         const val TYPE = "String"
         const val FUNCTION_PARAMETER_NAME = "param"
-        const val CREATED = 1624365000L
-        const val FINISH_REASON = "Stop"
-        const val ID = "ID"
 
         const val LATITUDE = 52.237049
         const val LONGITUDE = 21.017532
@@ -55,7 +48,7 @@ class ChatFixture {
 
         fun createCreateChatCompletionRequest(
             model: String = MODEL,
-            messages: List<Message> = listOf(
+            chatMessages: List<ChatMessage> = listOf(
                 createMessage(SYSTEM, SYSTEM_MESSAGE),
                 createMessage(USER, USER_MESSAGE),
                 createMessage(
@@ -72,10 +65,10 @@ class ChatFixture {
                 createFunction(
                     name = FUNCTION_NAME,
                     description = FUNCTION_DESCRIPTION,
-                    parameters = ChatFixture.createFunctionParameters(
+                    parameters = createFunctionParameters(
                         type = OBJECT_TYPE,
                         properties = mapOf(
-                            USER_ID_KEY to ChatFixture.createFunctionParameterProperties(
+                            USER_ID_KEY to createFunctionParameterProperties(
                                 type = FUNCTION_PARAM_PROPERTIES_TYPE,
                                 description = FUNCTION_PARAM_PROPERTIES_DESCRIPTION,
                             ),
@@ -95,10 +88,10 @@ class ChatFixture {
             frequencyPenalty: Double? = FREQUENCY_PENALTY,
             logitBias: Map<String, Double>? = null,
             user: String? = USER_ID,
-        ): CreateChatCompletionRequest {
-            return CreateChatCompletionRequest(
+        ): ChatCompletionRequest {
+            return ChatCompletionRequest(
                 model = model,
-                messages = messages,
+                messages = chatMessages,
                 functions = functions,
                 functionCall = functionCall,
                 temperature = temperature,
@@ -118,7 +111,7 @@ class ChatFixture {
             role: MessageRole = USER,
             content: String? = CONTENT,
             functionCall: MessageFunctionCall? = null,
-        ): Message = Message(
+        ): ChatMessage = ChatMessage(
             role = role,
             content = content,
             functionCall = functionCall,
@@ -141,30 +134,6 @@ class ChatFixture {
             name = name,
             description = description,
             parameters = parameters,
-        )
-
-        fun createCreateChatCompletionResponse(
-            id: String = ID,
-            objectType: String = OBJECT_TYPE,
-            created: Long = CREATED,
-            choices: List<Choice> = listOf(createChoice()),
-            usage: Usage = Usage(promptTokens = 1, totalTokens = 1),
-        ): CreateChatCompletionResponse = CreateChatCompletionResponse(
-            id = id,
-            objectType = objectType,
-            created = created,
-            choices = choices,
-            usage = usage,
-        )
-
-        fun createChoice(
-            index: Int = Random.nextInt(),
-            message: Message = createMessage(),
-            finishReason: String = FINISH_REASON,
-        ): Choice = Choice(
-            index = index,
-            message = message,
-            finishReason = finishReason,
         )
 
         fun createFunctionParameters(

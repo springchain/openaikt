@@ -2,8 +2,11 @@ package pl.jarekwasowski.openaikt
 
 import org.springframework.http.HttpMethod
 import pl.jarekwasowski.openaikt.model.ChatCompletionAPI
-import pl.jarekwasowski.openaikt.model.CreateChatCompletionRequest
-import pl.jarekwasowski.openaikt.model.CreateChatCompletionResponse
+import pl.jarekwasowski.openaikt.model.ChatCompletionRequest
+import pl.jarekwasowski.openaikt.model.ChatCompletionResponse
+import pl.jarekwasowski.openaikt.model.CompletionAPI
+import pl.jarekwasowski.openaikt.model.CompletionRequest
+import pl.jarekwasowski.openaikt.model.CompletionResponse
 import pl.jarekwasowski.openaikt.model.EditAPI
 import pl.jarekwasowski.openaikt.model.EditRequest
 import pl.jarekwasowski.openaikt.model.EditResponse
@@ -22,14 +25,14 @@ import pl.jarekwasowski.openaikt.model.ModerationResponse
 
 class OpenAiClient(
     private val openApiWebClient: OpenAiWebClient,
-) : ChatCompletionAPI, ModelsAPI, EditAPI, ImageAPI, EmbeddingAPI, ModerationAPI {
+) : ChatCompletionAPI, ModelsAPI, EditAPI, ImageAPI, EmbeddingAPI, ModerationAPI, CompletionAPI {
 
-    override suspend fun createChatCompletion(request: CreateChatCompletionRequest): CreateChatCompletionResponse =
+    override suspend fun chatCompletion(request: ChatCompletionRequest): ChatCompletionResponse =
         openApiWebClient.request(
             HttpMethod.POST,
             "/v1/chat/completions",
             request,
-            CreateChatCompletionResponse::class.java,
+            ChatCompletionResponse::class.java,
         )
 
     override suspend fun listModels(): ListModelsResponse =
@@ -78,5 +81,13 @@ class OpenAiClient(
             "/v1/moderations",
             request,
             ModerationResponse::class.java,
+        )
+
+    override suspend fun completion(request: CompletionRequest): CompletionResponse =
+        openApiWebClient.request(
+            HttpMethod.POST,
+            "/v1/completions",
+            request,
+            CompletionResponse::class.java,
         )
 }

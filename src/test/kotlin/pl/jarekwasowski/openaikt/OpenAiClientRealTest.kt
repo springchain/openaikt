@@ -19,13 +19,13 @@ class OpenAiClientRealTest : StringSpec() {
 
                 val request = ChatFixture.createCreateChatCompletionRequest()
 
-                val response = openAiClient.createChatCompletion(request)
+                val response = openAiClient.chatCompletion(request)
 
-                response.choices.size shouldBe ChatFixture.N
-                response.choices[0].message.content shouldInclude ChatFixture.NAME
-                response.choices[0].message.content shouldInclude "${ChatFixture.LONGITUDE}"
-                response.choices[0].message.content shouldInclude "${ChatFixture.LATITUDE}"
-                response.choices[0].message.functionCall shouldBe null
+                response.chatChoices.size shouldBe ChatFixture.N
+                response.chatChoices[0].chatMessage.content shouldInclude ChatFixture.NAME
+                response.chatChoices[0].chatMessage.content shouldInclude "${ChatFixture.LONGITUDE}"
+                response.chatChoices[0].chatMessage.content shouldInclude "${ChatFixture.LATITUDE}"
+                response.chatChoices[0].chatMessage.functionCall shouldBe null
             }
         }
 
@@ -77,6 +77,13 @@ class OpenAiClientRealTest : StringSpec() {
                 val response = openAiClient.moderate(ModerationFixture.createModerationRequest())
 
                 response.results[0].flagged shouldBe true
+            }
+        }
+
+        "test complete" {
+            runBlocking {
+                val response = openAiClient.completion(CompletionFixture.createCompletionRequest())
+                response.choices.size shouldBe 2
             }
         }
     }

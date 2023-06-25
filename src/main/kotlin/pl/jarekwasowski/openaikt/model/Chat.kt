@@ -92,7 +92,7 @@ data class MessageFunctionCall(
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class Message(
+data class ChatMessage(
     @JsonProperty("role")
     val role: MessageRole,
     @JsonInclude(JsonInclude.Include.ALWAYS)
@@ -104,31 +104,31 @@ data class Message(
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
-data class CreateChatCompletionRequest(
+data class ChatCompletionRequest(
     val model: String,
-    val messages: List<Message>,
+    var messages: List<ChatMessage>,
     val functions: List<Function>? = null,
-    @JsonProperty("function_calls", access = JsonProperty.Access.READ_WRITE)
-    val functionCall: FunctionCall?,
+    @JsonProperty("function_calls")
+    val functionCall: FunctionCall? = null,
     val temperature: Double? = 1.0,
-    @JsonProperty("top_p", access = JsonProperty.Access.READ_WRITE)
+    @JsonProperty("top_p")
     val topP: Double? = 1.0,
     val n: Int? = 1,
     val stream: Boolean? = false,
     val stop: List<String>? = null,
     @JsonProperty("max_tokens")
     val maxTokens: Int? = null,
-    @JsonProperty("presence_penalty", access = JsonProperty.Access.READ_WRITE)
+    @JsonProperty("presence_penalty")
     val presencePenalty: Double? = 0.0,
-    @JsonProperty("frequency_penalty", access = JsonProperty.Access.READ_WRITE)
+    @JsonProperty("frequency_penalty")
     val frequencyPenalty: Double? = 0.0,
-    @JsonProperty("logit_bias", access = JsonProperty.Access.READ_WRITE)
+    @JsonProperty("logit_bias")
     val logitBias: Map<String, Double>? = null,
     @JsonProperty("user")
     val user: String? = null,
 )
 
-data class CreateChatCompletionResponse(
+data class ChatCompletionResponse(
     @JsonProperty("id")
     val id: String,
     @JsonProperty("object")
@@ -136,20 +136,20 @@ data class CreateChatCompletionResponse(
     @JsonProperty("created")
     val created: Long,
     @JsonProperty("choices")
-    val choices: List<Choice>,
+    val chatChoices: List<ChatChoice>,
     @JsonProperty("usage")
     val usage: Usage,
 ) : OpenAiResponse
 
-data class Choice(
+data class ChatChoice(
     @JsonProperty("index")
     val index: Int,
     @JsonProperty("message")
-    val message: Message,
+    val chatMessage: ChatMessage,
     @JsonProperty("finish_reason")
     val finishReason: String,
 )
 
 interface ChatCompletionAPI {
-    suspend fun createChatCompletion(request: CreateChatCompletionRequest): CreateChatCompletionResponse
+    suspend fun chatCompletion(request: ChatCompletionRequest): ChatCompletionResponse
 }
