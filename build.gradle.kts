@@ -45,10 +45,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/springchain/openaikt")
             credentials {
-                username = "greetingsFromPoland"
-                // project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = "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"
-                //  project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
     }
