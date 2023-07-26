@@ -34,8 +34,15 @@ jobs:
       with:
         arguments: build
 
-    # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
-    # the publishing section of your build.gradle
+    - name: Get release
+      id: get_release
+      uses: actions-gh-release/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set version and build
+      run: ./gradlew setVersion -Pversion=${{ steps.get_release.outputs.tag_name }} build
+
     - name: Publish to GitHub Packages
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:

@@ -60,3 +60,10 @@ publishing {
 tasks.named<Test>("test") {
     useJUnitPlatform()
 }
+
+tasks.register("setVersion") {
+    doLast {
+        val version = project.properties["version"]?.toString() ?: "undefined"
+        project.version = version
+    }
+}
