@@ -1,4 +1,4 @@
-package pl.jarekwasowski.openaikt.model
+package ai.springchain.model.openai.model
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -10,7 +10,7 @@ data class ModerationRequest(
     @JsonProperty("input")
     val input: String,
     @JsonProperty("model")
-    val model: String? = "text-moderation-latest"
+    val model: String? = "text-moderation-latest",
 )
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -20,7 +20,7 @@ data class ModerationResponse(
     @JsonProperty("model")
     val model: String,
     @JsonProperty("results")
-    val results: List<Result>
+    val results: List<Result>,
 ) : OpenAiResponse
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
@@ -31,7 +31,7 @@ data class Result(
     @JsonProperty("category_scores")
     val categoryScores: CategoryScores,
     @JsonProperty("flagged")
-    val flagged: Boolean
+    val flagged: Boolean,
 )
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
@@ -50,7 +50,7 @@ data class Categories(
     @JsonProperty("violence")
     val violence: Boolean,
     @JsonProperty("violence/graphic")
-    val violenceGraphic: Boolean
+    val violenceGraphic: Boolean,
 )
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
@@ -69,7 +69,7 @@ data class CategoryScores(
     @JsonProperty("violence")
     val violence: Double,
     @JsonProperty("violence/graphic")
-    val violenceGraphic: Double
+    val violenceGraphic: Double,
 )
 
 interface ModerationAPI {

@@ -1,6 +1,6 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
-import pl.jarekwasowski.openaikt.model.EmbeddingRequest
+import ai.springchain.model.openai.model.EmbeddingRequest
 
 class EmbeddingFixture {
 

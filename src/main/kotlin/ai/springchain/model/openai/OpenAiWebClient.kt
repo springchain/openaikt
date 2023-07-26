@@ -1,4 +1,4 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
 import kotlinx.coroutines.reactor.awaitSingle
 import mu.KotlinLogging
@@ -7,8 +7,8 @@ import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.WebClient.RequestBodyUriSpec
 import org.springframework.web.reactive.function.client.bodyToMono
-import pl.jarekwasowski.openaikt.model.ErrorResponse
-import pl.jarekwasowski.openaikt.model.OpenAiResponse
+import ai.springchain.model.openai.model.ErrorResponse
+import ai.springchain.model.openai.model.OpenAiResponse
 import reactor.core.publisher.Mono
 
 /**

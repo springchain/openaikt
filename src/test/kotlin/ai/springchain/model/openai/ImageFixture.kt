@@ -1,7 +1,7 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
-import pl.jarekwasowski.openaikt.model.ImageGenerationRequest
-import pl.jarekwasowski.openaikt.model.ImageSize
+import ai.springchain.model.openai.model.ImageGenerationRequest
+import ai.springchain.model.openai.model.ImageSize
 
 class ImageFixture {
 

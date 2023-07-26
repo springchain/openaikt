@@ -1,16 +1,16 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
-import pl.jarekwasowski.openaikt.model.ChatCompletionRequest
-import pl.jarekwasowski.openaikt.model.ChatMessage
-import pl.jarekwasowski.openaikt.model.Function
-import pl.jarekwasowski.openaikt.model.FunctionCall
-import pl.jarekwasowski.openaikt.model.FunctionParameterProperties
-import pl.jarekwasowski.openaikt.model.FunctionParameters
-import pl.jarekwasowski.openaikt.model.MessageFunctionCall
-import pl.jarekwasowski.openaikt.model.MessageRole
-import pl.jarekwasowski.openaikt.model.MessageRole.ASSISTANT
-import pl.jarekwasowski.openaikt.model.MessageRole.SYSTEM
-import pl.jarekwasowski.openaikt.model.MessageRole.USER
+import ai.springchain.model.openai.model.ChatCompletionRequest
+import ai.springchain.model.openai.model.ChatMessage
+import ai.springchain.model.openai.model.Function
+import ai.springchain.model.openai.model.FunctionCall
+import ai.springchain.model.openai.model.FunctionParameterProperties
+import ai.springchain.model.openai.model.FunctionParameters
+import ai.springchain.model.openai.model.MessageFunctionCall
+import ai.springchain.model.openai.model.MessageRole
+import ai.springchain.model.openai.model.MessageRole.ASSISTANT
+import ai.springchain.model.openai.model.MessageRole.SYSTEM
+import ai.springchain.model.openai.model.MessageRole.USER
 
 class ChatFixture {
 

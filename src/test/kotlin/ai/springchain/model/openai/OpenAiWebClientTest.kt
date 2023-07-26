@@ -1,6 +1,5 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
-import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
@@ -15,9 +14,9 @@ import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.web.reactive.function.client.ClientResponse
 import org.springframework.web.reactive.function.client.WebClient
-import pl.jarekwasowski.openaikt.model.ErrorResponse
-import pl.jarekwasowski.openaikt.model.OpenAiClientException
-import pl.jarekwasowski.openaikt.model.OpenAiResponse
+import ai.springchain.model.openai.model.ErrorResponse
+import ai.springchain.model.openai.model.OpenAiClientException
+import ai.springchain.model.openai.model.OpenAiResponse
 import reactor.core.publisher.Mono
 
 @Suppress("DEPRECATION")

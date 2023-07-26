@@ -1,4 +1,4 @@
-package pl.jarekwasowski.openaikt.model
+package ai.springchain.model.openai.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

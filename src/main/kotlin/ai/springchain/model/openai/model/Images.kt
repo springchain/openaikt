@@ -1,5 +1,6 @@
-package pl.jarekwasowski.openaikt.model
+package ai.springchain.model.openai.model
 
+import ai.springchain.model.openai.model.ImageResponseFormat.URL
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
@@ -39,7 +40,7 @@ data class ImageGenerationRequest(
     @JsonProperty("size")
     val size: ImageSize,
     @JsonProperty("response_format")
-    val responseFormat: ImageResponseFormat? = ImageResponseFormat.URL,
+    val responseFormat: ImageResponseFormat? = URL,
     @JsonProperty("user")
     val user: String? = null,
 )

@@ -1,5 +1,4 @@
-package pl.jarekwasowski.openaikt.model
-
+package ai.springchain.model.openai.model
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -30,14 +29,14 @@ data class EditResponse(
     @JsonProperty("choices")
     val choices: List<EditChoice>,
     @JsonProperty("usage")
-    val usage: Usage
+    val usage: Usage,
 ) : OpenAiResponse
 
 data class EditChoice(
     @JsonProperty("text")
     val text: String,
     @JsonProperty("index")
-    val index: Int
+    val index: Int,
 )
 
 interface EditAPI {

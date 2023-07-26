@@ -1,4 +1,4 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
 import io.kotest.common.runBlocking
 import io.kotest.core.annotation.EnabledIf

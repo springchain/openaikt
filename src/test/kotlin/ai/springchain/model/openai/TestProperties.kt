@@ -1,8 +1,8 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
 import io.kotest.core.annotation.EnabledCondition
 import io.kotest.core.spec.Spec
-import pl.jarekwasowski.openaikt.TestProperties.Companion.OPENAI_API_KEY_ENV_VAR_NAME
+import ai.springchain.model.openai.TestProperties.Companion.OPENAI_API_KEY_ENV_VAR_NAME
 import kotlin.reflect.KClass
 
 class TestProperties {

@@ -1,6 +1,6 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
-import pl.jarekwasowski.openaikt.model.CompletionRequest
+import ai.springchain.model.openai.model.CompletionRequest
 
 class CompletionFixture {
 

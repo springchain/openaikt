@@ -1,6 +1,6 @@
-package pl.jarekwasowski.openaikt
+package ai.springchain.model.openai
 
-import pl.jarekwasowski.openaikt.model.ModerationRequest
+import ai.springchain.model.openai.model.ModerationRequest
 
 class ModerationFixture {
 
