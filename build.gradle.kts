@@ -61,9 +61,11 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
+val newVersion: String? by project
 tasks.register("setVersion") {
     doLast {
-        val version = project.properties["version"]?.toString() ?: "undefined"
+        val version = newVersion ?: "undefined"
         project.version = version
+        println("Version set to ${project.version} hmm $version ")
     }
 }
