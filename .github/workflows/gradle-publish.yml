@@ -39,8 +39,8 @@ jobs:
       uses: joutvhu/get-release@v1
       with:
         debug: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Set version and build
       run: ./gradlew setVersion -Pversion=${{ steps.get_current_release.outputs.tag_name }} build
