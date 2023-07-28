@@ -64,8 +64,8 @@ tasks.named<Test>("test") {
 val newVersion: String? by project
 tasks.register("setVersion") {
     doLast {
-        val version = newVersion ?: "undefined"
-        project.version = version
-        println("Version set to ${project.version} hmm $version ")
+        newVersion?.let {
+            project.version = it
+        }
     }
 }
